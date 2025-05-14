@@ -1,0 +1,158 @@
+<mxfile host="65bd71144e">
+    <diagram name="第 1 页" id="r-LrhBYWQy-P7uOG4ZFg">
+        <mxGraphModel dx="744" dy="355" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="dqzXJLXYRDtVWNK6KJOR-1" value="HaMeR 渲染流程：3D到2D映射与图像处理" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="120" y="20" width="520" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="new1" value="原始RGB图像" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="80" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="new2" value="图像归一化&lt;br&gt;(img - MEAN) / STD" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+                    <mxGeometry x="200" y="80" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="new-arrow1" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="new1" target="new2">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="390" y="350" as="sourcePoint"/>
+                        <mxPoint x="440" y="300" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="new-label1" value="数据加载阶段" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="new-arrow1">
+                    <mxGeometry x="-0.3" y="1" relative="1" as="geometry">
+                        <mxPoint x="6" y="-9" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="dqzXJLXYRDtVWNK6KJOR-2" value="归一化后的图像&lt;br&gt;batch[&#39;img&#39;]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="180" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="new-arrow2" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="new2" target="dqzXJLXYRDtVWNK6KJOR-2">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="390" y="350" as="sourcePoint"/>
+                        <mxPoint x="440" y="300" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="270" y="160"/>
+                            <mxPoint x="190" y="160"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="new-label2" value="模型输入" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="new-arrow2">
+                    <mxGeometry x="0.3667" relative="1" as="geometry">
+                        <mxPoint x="27" y="-10" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="dqzXJLXYRDtVWNK6KJOR-3" value="预测的3D顶点&lt;br&gt;out[&#39;pred_vertices&#39;]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="280" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="dqzXJLXYRDtVWNK6KJOR-4" value="预测的相机参数&lt;br&gt;out[&#39;pred_cam_t&#39;]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="360" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="dqzXJLXYRDtVWNK6KJOR-5" value="创建白色背景&lt;br&gt;white_img&lt;br&gt;(特殊反归一化)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="180" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="dqzXJLXYRDtVWNK6KJOR-6" value="图像反归一化&lt;br&gt;input_patch" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="480" y="180" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="dqzXJLXYRDtVWNK6KJOR-7" value="3D渲染器&lt;br&gt;renderer(...)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="320" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="dqzXJLXYRDtVWNK6KJOR-8" value="渲染结果&lt;br&gt;regression_img" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+                    <mxGeometry x="600" y="320" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="dqzXJLXYRDtVWNK6KJOR-9" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="dqzXJLXYRDtVWNK6KJOR-2" target="dqzXJLXYRDtVWNK6KJOR-5" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="390" y="350" as="sourcePoint"/>
+                        <mxPoint x="440" y="300" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="dqzXJLXYRDtVWNK6KJOR-10" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="dqzXJLXYRDtVWNK6KJOR-5" target="dqzXJLXYRDtVWNK6KJOR-6" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="390" y="350" as="sourcePoint"/>
+                        <mxPoint x="440" y="300" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="dqzXJLXYRDtVWNK6KJOR-11" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="dqzXJLXYRDtVWNK6KJOR-3" target="dqzXJLXYRDtVWNK6KJOR-7" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="390" y="350" as="sourcePoint"/>
+                        <mxPoint x="440" y="300" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="320" y="310"/>
+                            <mxPoint x="320" y="350"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="dqzXJLXYRDtVWNK6KJOR-12" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="dqzXJLXYRDtVWNK6KJOR-4" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="390" y="350" as="sourcePoint"/>
+                        <mxPoint x="400" y="350" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="320" y="390"/>
+                            <mxPoint x="320" y="350"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="dqzXJLXYRDtVWNK6KJOR-13" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;" parent="1" source="dqzXJLXYRDtVWNK6KJOR-2" target="dqzXJLXYRDtVWNK6KJOR-7" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="390" y="350" as="sourcePoint"/>
+                        <mxPoint x="440" y="300" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="190" y="240"/>
+                            <mxPoint x="460" y="240"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="dqzXJLXYRDtVWNK6KJOR-14" value="输入到渲染器" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="dqzXJLXYRDtVWNK6KJOR-13" vertex="1" connectable="0">
+                    <mxGeometry x="0.0568" y="-1" relative="1" as="geometry">
+                        <mxPoint x="-13" y="-11" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="dqzXJLXYRDtVWNK6KJOR-15" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="dqzXJLXYRDtVWNK6KJOR-7" target="dqzXJLXYRDtVWNK6KJOR-8" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="390" y="350" as="sourcePoint"/>
+                        <mxPoint x="440" y="300" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="dqzXJLXYRDtVWNK6KJOR-17" value="&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;图像归一化与反归一化处理细节&lt;/span&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="120" y="450" width="220" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="dqzXJLXYRDtVWNK6KJOR-18" value="&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;1. 数据加载阶段的图像归一化处理:&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp; &amp;nbsp;img = (img - DEFAULT_MEAN) / DEFAULT_STD&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp; &amp;nbsp;- 原始RGB图像减去均值并除以标准差&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp; &amp;nbsp;- 使图像数值在模型更易处理的范围内&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp; &amp;nbsp;- 提高训练稳定性和模型性能&lt;/span&gt;&lt;/div&gt;&lt;br&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;2. 反归一化处理 (可视化前处理):&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp; &amp;nbsp;input_patch = batch[&#39;img&#39;][n].cpu() * (DEFAULT_STD/255) + (DEFAULT_MEAN/255)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp; &amp;nbsp;- 将归一化的图像还原回原始RGB值范围(0-255)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp; &amp;nbsp;- 调整通道顺序: input_patch = input_patch.permute(1,2,0).numpy()&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp; &amp;nbsp;- 从PyTorch张量格式(C,H,W)转换到NumPy数组格式(H,W,C)&lt;/span&gt;&lt;/div&gt;&lt;br&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;3. 创建白色背景 (特殊的反归一化):&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp; &amp;nbsp;white_img = (torch.ones_like(batch[&#39;img&#39;][n]) - DEFAULT_MEAN/255) / (DEFAULT_STD/255)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp; &amp;nbsp;- 创建一个归一化形式的白色图像，与模型输入格式匹配&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp; &amp;nbsp;- 用于侧视图渲染的背景&lt;/span&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="480" width="600" height="230" as="geometry"/>
+                </mxCell>
+                <mxCell id="dqzXJLXYRDtVWNK6KJOR-19" value="3D到2D映射过程" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="120" y="720" width="170" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="dqzXJLXYRDtVWNK6KJOR-20" value="&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;渲染器(renderer)内部流程:&lt;/span&gt;&lt;/div&gt;&lt;br&gt;&lt;div style=&quot;text-align: left;&quot;&gt;1. 接收参数:&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&amp;nbsp; - 3D顶点坐标 (pred_vertices)&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&amp;nbsp; - 相机平移参数 (pred_cam_t)&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&amp;nbsp; - 输入图像 (batch[&#39;img&#39;])&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&amp;nbsp; - 网格颜色、背景颜色等渲染参数&lt;/div&gt;&lt;br&gt;&lt;div style=&quot;text-align: left;&quot;&gt;2. 执行透视投影 (perspective_projection):&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&amp;nbsp; - 将3D坐标变换到相机坐标系&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&amp;nbsp; - 应用投影矩阵计算2D坐标&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&amp;nbsp; - 公式: x&#39; = fx * X/Z + cx, y&#39; = fy * Y/Z + cy&lt;/div&gt;&lt;br&gt;&lt;div style=&quot;text-align: left;&quot;&gt;3. 光栅化:&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&amp;nbsp; - 根据投影后的2D坐标和三角面片&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&amp;nbsp; - 渲染手部网格到2D图像上&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&amp;nbsp; - 添加光照、阴影等效果&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="750" width="500" height="270" as="geometry"/>
+                </mxCell>
+                <mxCell id="dqzXJLXYRDtVWNK6KJOR-21" value="渲染参数" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="270" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="dqzXJLXYRDtVWNK6KJOR-22" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="dqzXJLXYRDtVWNK6KJOR-21" target="dqzXJLXYRDtVWNK6KJOR-7" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="390" y="350" as="sourcePoint"/>
+                        <mxPoint x="440" y="300" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="new-box1" value="反归一化处理详解" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeChild=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+                    <mxGeometry x="610" y="145" width="200" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="new-box1-item1" value="1. 乘以标准差：img * STD" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="new-box1">
+                    <mxGeometry y="30" width="200" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="new-box1-item2" value="2. 加上均值：img + MEAN" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="new-box1">
+                    <mxGeometry y="60" width="200" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="new-box1-item3" value="3. 转换格式：C,H,W → H,W,C" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="new-box1">
+                    <mxGeometry y="90" width="200" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="new-arrow3" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="dqzXJLXYRDtVWNK6KJOR-6" target="new-box1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="400" y="350" as="sourcePoint"/>
+                        <mxPoint x="450" y="300" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

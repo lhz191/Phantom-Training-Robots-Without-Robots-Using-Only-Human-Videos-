@@ -1,0 +1,210 @@
+<mxfile host="app.diagrams.net" modified="2023-11-24T12:00:00.000Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36" etag="1" version="15.8.6" type="device">
+  <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
+        
+        <!-- 标题 -->
+        <mxCell id="title" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;&lt;b&gt;HaMeR - 3D裁剪坐标系到3D全局坐标系的转换&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="160" y="20" width="480" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 第一部分：原图和裁剪框的2D关系 -->
+        <mxCell id="part1-title" value="&lt;b&gt;1. 原图与裁剪框的2D关系&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="160" y="60" width="480" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 原图和裁剪框示意图 -->
+        <mxCell id="original-image" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="120" y="100" width="560" height="300" as="geometry" />
+        </mxCell>
+        
+        <!-- 图像中心点 -->
+        <mxCell id="img-center" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FF0000;strokeColor=#b85450;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="395" y="245" width="10" height="10" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="img-center-label" value="img_center (w_2, h_2)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="340" y="255" width="120" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- 裁剪框 -->
+        <mxCell id="crop-box" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#6c8ebf;strokeWidth=2;dashed=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="280" y="150" width="160" height="160" as="geometry" />
+        </mxCell>
+        
+        <!-- 裁剪框中心点 -->
+        <mxCell id="box-center" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#0000FF;strokeColor=#6c8ebf;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="355" y="225" width="10" height="10" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="box-center-label" value="box_center (cx, cy)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="250" y="225" width="100" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- 手部区域 -->
+        <mxCell id="hand-area" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="320" y="190" width="80" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="hand-label" value="手部" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="340" y="220" width="40" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- 2D关键信息标注 -->
+        <mxCell id="img-w" value="img_w" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="380" y="410" width="40" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="img-h" value="img_h" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="690" y="240" width="40" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="box-size" value="box_size (b)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="440" y="150" width="80" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- 相对位置示意 -->
+        <mxCell id="offset-arrow" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0.5;entryDx=0;entryDy=0;dashed=1;dashPattern=1 1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="box-center" target="img-center">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="350" as="sourcePoint" />
+            <mxPoint x="440" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="offset-label" value="偏移量(cx-w_2, cy-h_2)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="370" y="215" width="140" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- 坐标说明 -->
+        <mxCell id="coords-explain" value="原图2D坐标系：原点在左上角，向右为x正方向，向下为y正方向" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="120" y="410" width="300" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- 第二部分：坐标系转换流程 -->
+        <mxCell id="part2-title" value="&lt;b&gt;2. 坐标系转换流程&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="160" y="450" width="480" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 3D裁剪坐标系 -->
+        <mxCell id="crop-coords" value="3D裁剪坐标系" style="swimlane;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;startSize=30;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="120" y="490" width="200" height="180" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="crop-origin-3d" value="原点(0,0,0)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="crop-coords">
+          <mxGeometry x="80" y="40" width="60" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="crop-axes" value="" style="shape=crossbar;whiteSpace=wrap;html=1;rounded=1;direction=south;" vertex="1" parent="crop-coords">
+          <mxGeometry x="100" y="70" width="20" height="100" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="crop-cam-params" value="相机参数: [s, tx, ty]&lt;br&gt;s: 缩放因子&lt;br&gt;tx, ty: x和y方向的平移" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="crop-coords">
+          <mxGeometry x="40" y="110" width="150" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- 转换函数 -->
+        <mxCell id="transform-func" value="坐标转换函数:&lt;br&gt;cam_crop_to_full" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="360" y="490" width="240" height="180" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="transform-step1" value="1. 计算图像中心: w_2 = img_w/2, h_2 = img_h/2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;spacingLeft=4;spacingRight=4;" vertex="1" parent="transform-func">
+          <mxGeometry y="40" width="240" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="transform-step2" value="2. 应用缩放: bs = b * s + 1e-9" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;spacingLeft=4;spacingRight=4;" vertex="1" parent="transform-func">
+          <mxGeometry y="70" width="240" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="transform-step3" value="3. 计算Z轴平移: tz = 2*focal_length/bs" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;spacingLeft=4;spacingRight=4;" vertex="1" parent="transform-func">
+          <mxGeometry y="100" width="240" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="transform-step4" value="4. 计算X轴平移: tx = 2*(cx-w_2)/bs + tx_crop" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;spacingLeft=4;spacingRight=4;" vertex="1" parent="transform-func">
+          <mxGeometry y="130" width="240" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="transform-step5" value="5. 计算Y轴平移: ty = 2*(cy-h_2)/bs + ty_crop" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;spacingLeft=4;spacingRight=4;" vertex="1" parent="transform-func">
+          <mxGeometry y="160" width="240" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- 3D全局坐标系 -->
+        <mxCell id="global-coords" value="3D全局坐标系" style="swimlane;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;startSize=30;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="640" y="490" width="200" height="180" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="global-origin-3d" value="原点(0,0,0)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="global-coords">
+          <mxGeometry x="80" y="40" width="60" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="global-axes" value="" style="shape=crossbar;whiteSpace=wrap;html=1;rounded=1;direction=south;" vertex="1" parent="global-coords">
+          <mxGeometry x="100" y="70" width="20" height="100" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="global-cam-params" value="相机参数: [tx, ty, tz]&lt;br&gt;tx, ty: x和y方向的平移&lt;br&gt;tz: z方向的平移(深度)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="global-coords">
+          <mxGeometry x="40" y="110" width="150" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- 连接箭头 -->
+        <mxCell id="arrow1" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="crop-coords" target="transform-func">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="600" as="sourcePoint" />
+            <mxPoint x="440" y="550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow2" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="transform-func" target="global-coords">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="600" as="sourcePoint" />
+            <mxPoint x="440" y="550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- 第三部分：为什么需要2D信息 -->
+        <mxCell id="part3-title" value="&lt;b&gt;3. 为什么3D坐标转换需要2D图像信息？&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="160" y="690" width="480" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 解释图表 -->
+        <mxCell id="explain-container" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="120" y="730" width="560" height="220" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="explain-left" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#000000;dashed=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="140" y="750" width="250" height="180" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="explain-right" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#000000;dashed=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="410" y="750" width="250" height="180" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="explain-title1" value="1. 位置关系" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="140" y="750" width="250" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="explain-text1" value="- 裁剪框在原图中的位置(cx,cy)决定了裁剪坐标系在全局坐标系中的相对位置&lt;br&gt;&lt;br&gt;- 为了正确映射3D点，必须知道两个坐标系的原点之间的偏移量，这个偏移量存在于2D平面上&lt;br&gt;&lt;br&gt;- (cx-w_2, cy-h_2)表示裁剪框中心相对于图像中心的偏移，这直接影响相机在3D空间中的平移参数tx和ty" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="150" y="780" width="230" height="140" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="explain-title2" value="2. 尺度关系" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="410" y="750" width="250" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="explain-text2" value="- 裁剪框大小(box_size)与模型预测的缩放系数(s)共同决定了从裁剪空间到全局空间的缩放比例&lt;br&gt;&lt;br&gt;- 这个尺度关系影响到所有三个维度的坐标变换&lt;br&gt;&lt;br&gt;- 特别地，深度值tz的计算依赖于bs = box_size * s，表示裁剪框在3D空间中的实际大小&lt;br&gt;&lt;br&gt;- 焦距(focal_length)提供了3D到2D投影所需的相机内参" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="420" y="780" width="230" height="140" as="geometry" />
+        </mxCell>
+        
+        <!-- 总结 -->
+        <mxCell id="summary-title" value="&lt;b&gt;关键点总结&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="160" y="970" width="480" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="summary-content" value="1. 裁剪空间坐标系是一个相对于裁剪框中心建立的3D坐标系，模型在此空间中进行预测&lt;br&gt;&lt;br&gt;2. 全局坐标系是相对于原始图像建立的3D坐标系，用于最终的渲染和可视化&lt;br&gt;&lt;br&gt;3. cam_crop_to_full转换过程需要同时考虑3D信息(相机参数)和2D信息(裁剪框位置、大小)&lt;br&gt;&lt;br&gt;4. 虽然我们处理的是3D手部模型，但它最终要投影到2D图像平面上，所以必须考虑相机投影关系&lt;br&gt;&lt;br&gt;5. 这种坐标转换是连接模型预测结果与最终可视化渲染的关键桥梁" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="160" y="1000" width="480" height="150" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile> 

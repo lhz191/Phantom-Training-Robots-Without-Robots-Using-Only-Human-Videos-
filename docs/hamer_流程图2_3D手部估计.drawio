@@ -1,0 +1,105 @@
+<mxfile host="app.diagrams.net" modified="2023-11-21T12:00:00.000Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36" etag="2" version="15.8.6" type="device">
+  <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
+    <mxGraphModel dx="1822" dy="1198" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="P3RjGtai6nAaVAYAQjJ4-19" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;HaMeR原始demo.py详细流程图 - 第2部分：3D手部估计和相机处理&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="330" y="30" width="450" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="P3RjGtai6nAaVAYAQjJ4-5" value="HaMeR 3D手部估计阶段" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;glass=0;strokeWidth=1;shadow=0;fillColor=#f8cecc;strokeColor=#b85450;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="160" y="80" width="170" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="1-L1d0sxnf6r6qPiPM18-12" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;labelPosition=left;verticalLabelPosition=middle;align=right;verticalAlign=middle;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="350" y="70" width="20" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="1-L1d0sxnf6r6qPiPM18-13" value="1. 对每批数据调用model进行推理:&lt;br&gt;&amp;nbsp; &amp;nbsp;- out = model(batch)&lt;br&gt;2. 处理左右手(X轴镜像):&lt;br&gt;&amp;nbsp; &amp;nbsp;- multiplier = (2*batch[&#39;right&#39;]-1)&lt;br&gt;&amp;nbsp; &amp;nbsp;- pred_cam[:,1] = multiplier*pred_cam[:,1]&lt;br&gt;3. 获取相机和图像信息:&lt;br&gt;&amp;nbsp; &amp;nbsp;- box_center, box_size, img_size&lt;br&gt;4. 计算缩放的焦距:&lt;br&gt;&amp;nbsp; &amp;nbsp;- scaled_focal_length = FOCAL_LENGTH / IMAGE_SIZE * img_size.max()&lt;br&gt;5. 将裁剪图像中的相机参数转换到全图坐标系:&lt;br&gt;&amp;nbsp; &amp;nbsp;- pred_cam_t_full = cam_crop_to_full(pred_cam, box_center, box_size, img_size, scaled_focal_length)" style="rounded=0;whiteSpace=wrap;html=1;align=left;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="380" y="70" width="430" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="P3RjGtai6nAaVAYAQjJ4-6" value="" style="rounded=0;html=1;jettySize=auto;orthogonalLoop=1;fontSize=11;endArrow=block;endFill=0;endSize=8;strokeWidth=1;shadow=0;labelBackgroundColor=none;edgeStyle=orthogonalEdgeStyle;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="P3RjGtai6nAaVAYAQjJ4-5" target="P3RjGtai6nAaVAYAQjJ4-7" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="245" y="530" as="sourcePoint" />
+            <mxPoint x="245" y="580" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P3RjGtai6nAaVAYAQjJ4-7" value="相机参数处理" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;glass=0;strokeWidth=1;shadow=0;fillColor=#fff2cc;strokeColor=#d6b656;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="160" y="280" width="170" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="1-L1d0sxnf6r6qPiPM18-16" value="cam_crop_to_full函数详解" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=#fff2cc;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;strokeColor=#d6b656;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="380" y="250" width="430" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="1-L1d0sxnf6r6qPiPM18-17" value="功能：将裁剪图像坐标系中的相机参数转换到完整图像坐标系" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="1-L1d0sxnf6r6qPiPM18-16">
+          <mxGeometry y="26" width="430" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="1-L1d0sxnf6r6qPiPM18-18" value="输入参数：&#xa;- cam_bbox: 模型预测的相机参数 [缩放因子, x偏移, y偏移]&#xa;- box_center: 裁剪框中心在原图中的坐标&#xa;- box_size: 裁剪框大小&#xa;- img_size: 原始图像尺寸&#xa;- focal_length: 焦距(默认5000)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="1-L1d0sxnf6r6qPiPM18-16">
+          <mxGeometry y="52" width="430" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="1-L1d0sxnf6r6qPiPM18-19" value="核心计算：&#xa;1. bs = b * cam_bbox[:, 0] + 1e-9  # 计算缩放因子&#xa;2. tz = 2 * focal_length / bs  # 计算Z轴平移&#xa;3. tx = (2 * (cx - w_2) / bs) + cam_bbox[:, 1]  # X轴平移&#xa;4. ty = (2 * (cy - h_2) / bs) + cam_bbox[:, 2]  # Y轴平移" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="1-L1d0sxnf6r6qPiPM18-16">
+          <mxGeometry y="130" width="430" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="1-L1d0sxnf6r6qPiPM18-20" value="MANO模型处理" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=#f8cecc;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;strokeColor=#b85450;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="840" y="70" width="310" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="1-L1d0sxnf6r6qPiPM18-21" value="1. MANO参数预测:&#xa;   - 手部姿态(hand_pose)&#xa;   - 全局方向(global_orient)&#xa;   - 形状参数(betas)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="1-L1d0sxnf6r6qPiPM18-20">
+          <mxGeometry y="26" width="310" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="1-L1d0sxnf6r6qPiPM18-22" value="2. MANO前向计算:&#xa;   - 将参数输入MANO模型&#xa;   - 生成3D顶点(vertices)&#xa;   - 生成3D关键点(joints)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="1-L1d0sxnf6r6qPiPM18-20">
+          <mxGeometry y="90" width="310" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1-L1d0sxnf6r6qPiPM18-24" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;dashed=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="1-L1d0sxnf6r6qPiPM18-13" target="1-L1d0sxnf6r6qPiPM18-21">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="650" y="700" as="sourcePoint" />
+            <mxPoint x="700" y="650" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1-L1d0sxnf6r6qPiPM18-25" value="vertices_to_trimesh函数详解" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=#e1d5e7;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;strokeColor=#9673a6;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="840" y="240" width="310" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="1-L1d0sxnf6r6qPiPM18-26" value="功能：将3D顶点和相机参数转换为可渲染的三角网格" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="1-L1d0sxnf6r6qPiPM18-25">
+          <mxGeometry y="26" width="310" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="1-L1d0sxnf6r6qPiPM18-27" value="核心步骤：&#xa;1. 选择左手或右手的面片索引(faces或faces_left)&#xa;2. 应用相机平移：vertices + camera_translation&#xa;3. 创建初始trimesh对象" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="1-L1d0sxnf6r6qPiPM18-25">
+          <mxGeometry y="52" width="310" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="1-L1d0sxnf6r6qPiPM18-28" value="4. 应用旋转变换：&#xa;   - 首先应用指定的rot_angle和rot_axis&#xa;   - 然后应用180度X轴旋转：mesh.apply_transform(rot)&#xa;   (这是坐标系转换的关键步骤)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="1-L1d0sxnf6r6qPiPM18-25">
+          <mxGeometry y="110" width="310" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="P3RjGtai6nAaVAYAQjJ4-10" value="渲染处理阶段" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;glass=0;strokeWidth=1;shadow=0;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="160" y="460" width="170" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="P3RjGtai6nAaVAYAQjJ4-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="P3RjGtai6nAaVAYAQjJ4-7" target="P3RjGtai6nAaVAYAQjJ4-10" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="245" y="590" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1-L1d0sxnf6r6qPiPM18-32" value="主要渲染函数:" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="380" y="450" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1-L1d0sxnf6r6qPiPM18-33" value="1. renderer.__call__(vertices, camera_translation, image)&lt;br&gt;2. renderer.render_rgba(vertices, cam_t)&lt;br&gt;3. renderer.render_rgba_multiple(vertices_list, cam_t_list)" style="rounded=0;whiteSpace=wrap;html=1;align=left;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="380" y="480" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1-L1d0sxnf6r6qPiPM18-34" value="3D转2D投影公式" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=#ffe6cc;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;strokeColor=#d79b00;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="380" y="550" width="430" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="1-L1d0sxnf6r6qPiPM18-35" value="透视投影基本公式：" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=1" vertex="1" parent="1-L1d0sxnf6r6qPiPM18-34">
+          <mxGeometry y="26" width="430" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="1-L1d0sxnf6r6qPiPM18-36" value="x' = cx + (focal_length * X / Z)&#xa;y' = cy + (focal_length * Y / Z)&#xa;&#xa;其中：&#xa;- (X,Y,Z) 是3D点在相机坐标系中的坐标&#xa;- (x',y') 是投影到图像平面的2D坐标&#xa;- (cx,cy) 是图像主点(通常是图像中心)&#xa;- focal_length 是相机焦距" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="1-L1d0sxnf6r6qPiPM18-34">
+          <mxGeometry y="52" width="430" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="1-L1d0sxnf6r6qPiPM18-30" value="续下一图" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=16;fontStyle=1" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="160" y="520" width="170" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="1-L1d0sxnf6r6qPiPM18-37" value="坐标系变换" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=#dae8fc;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;strokeColor=#6c8ebf;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="840" y="420" width="310" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="1-L1d0sxnf6r6qPiPM18-38" value="HaMeR中涉及的多个坐标系:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=1" vertex="1" parent="1-L1d0sxnf6r6qPiPM18-37">
+          <mxGeometry y="26" width="310" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="1-L1d0sxnf6r6qPiPM18-39" value="1. MANO模型坐标系&#xa;   - 手部姿态的原始坐标系&#xa;&#xa;2. 相机坐标系&#xa;   - 相对于相机的3D坐标&#xa;&#xa;3. 裁剪图像坐标系&#xa;   - 手部区域裁剪图像中的坐标&#xa;&#xa;4. 世界/全图坐标系&#xa;   - 原始完整图像中的坐标" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="1-L1d0sxnf6r6qPiPM18-37">
+          <mxGeometry y="52" width="310" height="118" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile> 

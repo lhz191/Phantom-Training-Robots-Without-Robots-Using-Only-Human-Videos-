@@ -1,0 +1,122 @@
+<mxfile host="65bd71144e">
+    <diagram id="cMmT26W-HO_lVn8aaOfg" name="透视投影对比">
+        <mxGraphModel dx="1102" dy="694" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="1" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="透视投影实现方式对比" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="204" y="40" width="420" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="标准透视投影数学公式" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeChild=0;resizeLast=0;collapsible=1;marginBottom=0;fontSize=14;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+                    <mxGeometry x="194" y="90" width="440" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="$$x' = c_x + \frac{f_x \cdot X}{Z}$$" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=16;" vertex="1" parent="3">
+                    <mxGeometry y="30" width="440" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="$$y' = c_y + \frac{f_y \cdot Y}{Z}$$" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=16;" vertex="1" parent="3">
+                    <mxGeometry y="60" width="440" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="您的函数实现" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeChild=0;resizeLast=0;collapsible=1;marginBottom=0;fontSize=14;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="220" width="360" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="# 计算图像中心点" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=12;" vertex="1" parent="6">
+                    <mxGeometry y="30" width="360" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="cx, cy = img_w/2, img_h/2  # 主点（图像中心）" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=12;" vertex="1" parent="6">
+                    <mxGeometry y="60" width="360" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="# 防止除零并应用投影公式" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=12;" vertex="1" parent="6">
+                    <mxGeometry y="90" width="360" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="z = np.maximum(points_3d_camera[:, 2], 1e-5)&#10;x = cx + (focal_length * points_3d_camera[:, 0] / z)&#10;y = cy + (focal_length * points_3d_camera[:, 1] / z)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=12;" vertex="1" parent="6">
+                    <mxGeometry y="120" width="360" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="HaMeR中的实现 (perspective_projection)" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeChild=0;resizeLast=0;collapsible=1;marginBottom=0;fontSize=14;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+                    <mxGeometry x="420" y="220" width="370" height="210" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="# 创建相机内参矩阵K" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=12;" vertex="1" parent="11">
+                    <mxGeometry y="30" width="370" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="K = torch.zeros([batch_size, 3, 3])&#10;K[:,0,0] = focal_length[:,0]  # fx&#10;K[:,1,1] = focal_length[:,1]  # fy&#10;K[:,2,2] = 1.&#10;K[:,:-1, -1] = camera_center  # cx, cy" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=12;" vertex="1" parent="11">
+                    <mxGeometry y="60" width="370" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="# 透视除法&#10;projected_points = points / points[:,:,-1].unsqueeze(-1)&#10;&#10;# 应用相机内参&#10;projected_points = torch.einsum('bij,bkj->bki', K, projected_points)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=12;" vertex="1" parent="11">
+                    <mxGeometry y="140" width="370" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="两种实现方式的数学等价性" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeChild=0;resizeLast=0;collapsible=1;marginBottom=0;fontSize=14;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="450" width="750" height="230" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="您的实现" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=14;fontStyle=1" vertex="1" parent="15">
+                    <mxGeometry y="30" width="750" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="直接使用数学公式，将3D点(X,Y,Z)投影到2D点(x',y')：&#10;x' = cx + (fx * X / Z)&#10;y' = cy + (fy * Y / Z)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=14;" vertex="1" parent="15">
+                    <mxGeometry y="60" width="750" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="HaMeR实现" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=14;fontStyle=1" vertex="1" parent="15">
+                    <mxGeometry y="110" width="750" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="1. 先执行透视除法：将3D点(X,Y,Z)转换为归一化坐标(X/Z, Y/Z, 1)&#10;2. 然后应用相机内参矩阵K：&#10;   [fx  0  cx]   [X/Z]   [fx*(X/Z) + cx]   [x']&#10;   [0  fy  cy] * [Y/Z] = [fy*(Y/Z) + cy] = [y']&#10;   [0   0   1]   [1 ]   [      1      ]   [1 ]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=14;" vertex="1" parent="15">
+                    <mxGeometry y="140" width="750" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="关键区别" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeChild=0;resizeLast=0;collapsible=1;marginBottom=0;fontSize=14;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="700" width="750" height="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="实现方式：" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=14;fontStyle=1" vertex="1" parent="20">
+                    <mxGeometry y="30" width="750" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="1. 您的实现：直接应用数学公式，逐坐标计算&#10;2. HaMeR实现：使用矩阵运算和批处理，先归一化再应用内参" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=14;" vertex="1" parent="20">
+                    <mxGeometry y="60" width="750" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="数值差异：" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=14;fontStyle=1" vertex="1" parent="20">
+                    <mxGeometry y="110" width="750" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="您的实现中加入了防除零保护(np.maximum(z, 1e-5))，而HaMeR中没有特别处理这种情况" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=14;" vertex="1" parent="20">
+                    <mxGeometry y="140" width="750" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="" style="endArrow=classic;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;curved=1;dashed=1;strokeWidth=2;" edge="1" parent="1" source="4" target="6">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="40" y="170" as="sourcePoint"/>
+                        <mxPoint x="90" y="120" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="144" y="135"/>
+                            <mxPoint x="144" y="200"/>
+                            <mxPoint x="220" y="200"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="26" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;curved=1;dashed=1;strokeWidth=2;" edge="1" parent="1" source="4" target="11">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="670" y="170" as="sourcePoint"/>
+                        <mxPoint x="720" y="120" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="671" y="135"/>
+                            <mxPoint x="671" y="200"/>
+                            <mxPoint x="605" y="200"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="27" value="直接应用" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+                    <mxGeometry x="110" y="155" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="矩阵形式" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+                    <mxGeometry x="660" y="155" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="" style="shape=flexArrow;endArrow=classic;html=1;width=6;endSize=5.33;endWidth=11;fillColor=#f5f5f5;strokeColor=#666666;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="219.5" y="370" as="sourcePoint"/>
+                        <mxPoint x="219.5" y="430" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="30" value="" style="shape=flexArrow;endArrow=classic;html=1;width=6;endSize=5.33;endWidth=11;fillColor=#f5f5f5;strokeColor=#666666;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="605" y="370" as="sourcePoint"/>
+                        <mxPoint x="605" y="430" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="31" value="数学等价" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="384" y="390" width="60" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile> 

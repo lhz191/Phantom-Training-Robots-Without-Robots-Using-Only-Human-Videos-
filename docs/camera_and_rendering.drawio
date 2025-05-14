@@ -1,0 +1,157 @@
+<mxfile host="65bd71144e">
+    <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
+        <mxGraphModel dx="629" dy="380" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="WIyWlLk6GJQsqaUBKTNV-0"/>
+                <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0"/>
+                <mxCell id="P3RjGtai6nAaVAYAQjJ4-19" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;HaMeR - 坐标系转换与3D渲染流程&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+                    <mxGeometry x="200" y="30" width="400" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="coord-title" value="坐标系转换流程" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+                    <mxGeometry x="250" y="70" width="300" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="crop-space" value="裁剪空间坐标系" style="swimlane;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+                    <mxGeometry x="40" y="120" width="200" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="crop-image" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="crop-space" vertex="1">
+                    <mxGeometry x="40" y="40" width="120" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="crop-hand" value="手部区域" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="crop-space" vertex="1">
+                    <mxGeometry x="70" y="60" width="60" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="crop-origin" value="原点 (0,0)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="crop-space" vertex="1">
+                    <mxGeometry x="70" y="130" width="60" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="crop-note" value="预测相机参数: [s, tx, ty]" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=2" parent="crop-space" vertex="1">
+                    <mxGeometry x="30" y="30" width="140" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="full-space" value="全图空间坐标系" style="swimlane;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+                    <mxGeometry x="560" y="120" width="200" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="full-image" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="full-space" vertex="1">
+                    <mxGeometry x="20" y="30" width="160" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="full-crop" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;" parent="full-space" vertex="1">
+                    <mxGeometry x="40" y="50" width="80" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="full-hand" value="手部" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="full-space" vertex="1">
+                    <mxGeometry x="60" y="60" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="full-origin" value="原点 (0,0)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="full-space" vertex="1">
+                    <mxGeometry x="10" y="130" width="60" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="full-note" value="目标相机参数: [tx, ty, tz]" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=2" parent="full-space" vertex="1">
+                    <mxGeometry x="30" y="30" width="140" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="transform-function" value="坐标转换函数: cam_crop_to_full" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+                    <mxGeometry x="280" y="120" width="240" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="transform-item1" value="输入:&lt;br&gt;- pred_cam: [s, tx, ty] - 裁剪空间相机参数&lt;br&gt;- box_center: 裁剪框中心在原图中的坐标&lt;br&gt;- box_size: 裁剪框大小&lt;br&gt;- img_size: 原始图像尺寸&lt;br&gt;- focal_length: 焦距(默认5000)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="transform-function" vertex="1">
+                    <mxGeometry y="30" width="240" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="transform-item2" value="输出:&lt;br&gt;- pred_cam_t_full: [tx, ty, tz] - 全图空间相机平移参数" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="transform-function" vertex="1">
+                    <mxGeometry y="120" width="240" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="transform-formula" value="核心转换公式" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+                    <mxGeometry x="200" y="320" width="400" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="formula-item1" value="1. s = cam_s + 1e-9 (防止除零错误)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="transform-formula" vertex="1">
+                    <mxGeometry y="30" width="400" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="formula-item2" value="2. tz = 2 * focal_length / (box_size * s) - Z轴平移" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="transform-formula" vertex="1">
+                    <mxGeometry y="50" width="400" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="formula-item3" value="3. tx = 2 * (box_center_x - img_width/2) / (box_size * s) + cam_tx - X轴平移" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="transform-formula" vertex="1">
+                    <mxGeometry y="70" width="400" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="formula-item4" value="4. ty = 2 * (box_center_y - img_height/2) / (box_size * s) + cam_ty - Y轴平移" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="transform-formula" vertex="1">
+                    <mxGeometry y="100" width="400" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="crop-to-transform" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="crop-space" target="transform-function" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="380" y="430" as="sourcePoint"/>
+                        <mxPoint x="430" y="380" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="transform-to-full" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="transform-function" target="full-space" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="380" y="430" as="sourcePoint"/>
+                        <mxPoint x="430" y="380" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="render-title" value="3D渲染与可视化流程" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+                    <mxGeometry x="250" y="480" width="300" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="mano-output" value="MANO模型输出" style="swimlane;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+                    <mxGeometry x="40" y="520" width="200" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="mano-vertices" value="pred_vertices: [batch_size, 778, 3]&lt;br&gt;3D手部网格顶点" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="mano-output" vertex="1">
+                    <mxGeometry x="10" y="30" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="mano-joints" value="pred_joints: [batch_size, 21, 3]&lt;br&gt;3D手部关键点" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="mano-output" vertex="1">
+                    <mxGeometry x="10" y="60" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="mano-cam" value="pred_cam_t: [batch_size, 3]&lt;br&gt;全图空间相机参数" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="mano-output" vertex="1">
+                    <mxGeometry x="10" y="90" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="renderer-block" value="渲染器" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+                    <mxGeometry x="280" y="520" width="240" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="renderer-item1" value="功能1: 单手渲染&lt;br&gt;renderer(vertices, camera_translation, image)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="renderer-block" vertex="1">
+                    <mxGeometry y="30" width="240" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="renderer-item2" value="功能2: 多手渲染&lt;br&gt;render_rgba_multiple(vertices_list, cam_t_list)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="renderer-block" vertex="1">
+                    <mxGeometry y="60" width="240" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="renderer-item3" value="功能3: 三角网格转换&lt;br&gt;vertices_to_trimesh(verts, camera_translation)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="renderer-block" vertex="1">
+                    <mxGeometry y="90" width="240" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="renderer-item4" value="参数: mesh_base_color, scene_bg_color等" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="renderer-block" vertex="1">
+                    <mxGeometry y="120" width="240" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="render-output" value="可视化输出" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+                    <mxGeometry x="560" y="520" width="200" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="output-1" value="前视图渲染" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="render-output" vertex="1">
+                    <mxGeometry x="20" y="40" width="70" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="output-2" value="侧视图渲染" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="render-output" vertex="1">
+                    <mxGeometry x="110" y="40" width="70" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="output-3" value="全图视图叠加" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="render-output" vertex="1">
+                    <mxGeometry x="65" y="90" width="70" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="mano-to-renderer" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="mano-output" target="renderer-block" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="380" y="630" as="sourcePoint"/>
+                        <mxPoint x="430" y="580" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="renderer-to-output" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="renderer-block" target="render-output" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="380" y="630" as="sourcePoint"/>
+                        <mxPoint x="430" y="580" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="render-code" value="渲染代码示例" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+                    <mxGeometry x="200" y="690" width="400" height="210" as="geometry"/>
+                </mxCell>
+                <mxCell id="code-item1" value="1. 单个手部渲染:&lt;br&gt;regression_img = renderer(out[&#39;pred_vertices&#39;][n],&lt;br&gt;                              out[&#39;pred_cam_t&#39;][n],&lt;br&gt;                              batch[&#39;img&#39;][n],&lt;br&gt;                              mesh_base_color=LIGHT_BLUE)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="render-code" vertex="1">
+                    <mxGeometry y="30" width="400" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="code-item2" value="2. 可选侧视图渲染:&lt;br&gt;side_img = renderer(..., side_view=True)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="render-code" vertex="1">
+                    <mxGeometry y="110" width="400" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="code-item3" value="3. 全图视图:&lt;br&gt;cam_view = renderer.render_rgba_multiple(all_verts, cam_t=all_cam_t, render_res=img_size[n], is_right=all_right)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="render-code" vertex="1">
+                    <mxGeometry y="150" width="400" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="summary-title" value="坐标系转换与渲染总结" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+                    <mxGeometry x="250" y="920" width="300" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="summary-text" value="1. 坐标系转换流程:&lt;br&gt;   - 模型输出裁剪空间相机参数(s, tx, ty)&lt;br&gt;   - 通过cam_crop_to_full函数转换为全图空间相机参数(tx, ty, tz)&lt;br&gt;   - 转换考虑了裁剪框位置、大小及焦距等因素&lt;br&gt;&lt;br&gt;2. 3D渲染流程:&lt;br&gt;   - 使用模型预测的3D顶点和相机参数进行渲染&lt;br&gt;   - 支持单手渲染、侧视图渲染和多手全图渲染&lt;br&gt;   - 渲染包括网格颜色、背景色等参数设置&lt;br&gt;   - 可输出最终的RGB图像、深度图和网格文件&lt;br&gt;&lt;br&gt;3. 最终可视化:&lt;br&gt;   - 原始输入图像与渲染结果拼接展示&lt;br&gt;   - 支持同时展示多角度视图&lt;br&gt;   - 可将渲染结果与原图进行半透明叠加" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+                    <mxGeometry x="200" y="950" width="400" height="200" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
